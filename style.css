@@ -39,3 +39,15 @@ body {
     text-align: center;
     color: white;
 }
+
+.delete-btn {
+    margin-left: 90%;
+    background-color: #3792cb;
+    border: none;
+    border-radius: 50%;
+}
+
+.delete-btn:hover {
+    background-color: #5a9dc7;
+    cursor: pointer;
+}
