@@ -1,53 +1,70 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 body {
-    background-color: #282c34;
-    font-family: 'Roboto', sans-serif;
+  background-color: #282c34;
+  font-family: "Roboto", sans-serif;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
 }
 
 .title {
-    text-align: center;
-    font-size: 60px;
-    color: white;
+  text-align: center;
+  font-size: 60px;
+  color: white;
 }
 
 .main-list-div {
-    margin: auto;
-    width: 75%;
+  margin: auto;
+  width: 75%;
 }
 
 .main-list {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 .list-item {
-    background-color: #3792cb;
-    margin-bottom: 2%;
-    padding: 1rem;
-    border-radius: 25px;
-    list-style-type: none;
+  background-color: #3792cb;
+  margin-bottom: 2%;
+  padding: 1rem;
+  border-radius: 25px;
+  list-style-type: none;
+  box-shadow: 1px 1px 2px 1px black;
 }
 
 .todo-input {
-    width: 100%;
-    font-size: 25px;
-    background-color: #282c34;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom-color: #3792cb;
-    text-align: center;
-    color: white;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 2rem;
+  font-size: 20px;
+  background-color: #282c34;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color: #3792cb;
+  text-align: center;
+  color: white;
+}
+
+.todo-input:focus {
+    outline: none;
 }
 
 .delete-btn {
-    margin-left: 90%;
-    background-color: #3792cb;
-    border: none;
-    border-radius: 50%;
+  float: right;
+  background-color: #3792cb;
+  border: none;
+  border-radius: 50%;
 }
 
 .delete-btn:hover {
-    background-color: #5a9dc7;
-    cursor: pointer;
+  background-color: #5a9dc7;
+  cursor: pointer;
+}
+
+.delete-btn:focus {
+    outline: none;
 }
