@@ -5,12 +5,13 @@ const todos = db.get('todos');
 
 const todoSchema = Joi.object().keys({
     todo_str: Joi.string().required(),
+    todo_client_id: Joi.number().required(),
 });
 
 function newTodo(todo) {
     const result = todoSchema.validate(todo);
 
-    if(result.error == null) {
+    if (result.error == null) {
         return todos.insert(todo);
     } else {
         return Promise.reject(result.error);
@@ -21,7 +22,12 @@ function getAllTodos() {
     return todos.find();
 }
 
+function deleteThisTodo(id) {
+    return todos.remove({ todo_client_id: parseInt(id) });
+}
+
 module.exports = {
     newTodo,
     getAllTodos,
+    deleteThisTodo,
 }

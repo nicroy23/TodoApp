@@ -38,6 +38,7 @@ ul {
   display: block;
   margin-right: auto;
   margin-left: auto;
+  width: 75%;
   margin-top: 2rem;
   font-size: 20px;
   background-color: #282c34;

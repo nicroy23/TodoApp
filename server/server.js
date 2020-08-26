@@ -10,7 +10,6 @@ app.use(
   cors({
     origin: "*",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
   })
 );
 app.use(morgan("tiny"));
@@ -18,7 +17,7 @@ app.use(morgan("tiny"));
 app.get('/todos', (req, res) => {
   modTodo.getAllTodos().then((todos) => {
     res.json(todos);
-  })
+  });
 });
 
 app.post("/todos", (req, res) => {
@@ -28,6 +27,16 @@ app.post("/todos", (req, res) => {
     .then(() => {
       res.json({ success: "Todo ajoute." });
     })
+    .catch((err) => {
+      res.status(500);
+      res.json({ error: "Erreur du serveur." });
+      console.log(err);
+    });
+});
+
+app.delete("/delete-todo/:id", (req, res) => {
+  modTodo.deleteThisTodo(req.params.id)
+    .then(() => { res.json({ success: "Todo supprime." }) })
     .catch((err) => {
       res.status(500);
       res.json({ error: "Erreur du serveur." });
