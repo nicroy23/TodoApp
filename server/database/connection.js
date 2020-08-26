@@ -1,8 +1,11 @@
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true });
+const monk = require('monk')
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-    console.log('Connected to db.');
+const url = 'mongodb://localhost:27017/todoapp';
+
+const db = monk(url);
+
+db.then(() => {
+  console.log('Connected correctly to server')
 });
+
+module.exports = db;
