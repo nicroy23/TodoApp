@@ -5,6 +5,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 const modTodo = require('./database/new-todo');
 
+app.use(express.static("../public"));
+
 app.use(bodyParser.json());
 app.use(
   cors({
