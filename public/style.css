@@ -71,15 +71,41 @@ ul {
 }
 
 .category-creator {
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin-right: auto;
   margin-left: auto;
-  width: 100%;
+  width: 75%;
   margin-bottom: 1rem;
+}
+
+.category-input {
+  background-color: #282c34;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color: #3792cb;
+  color: white;
+}
+
+.category-input:focus {
+  outline: none;
 }
 
 .color-input {
   float: right;
   margin-right: 1rem;
   border: none;
+}
+
+.category-chooser {
+  float: right;
+  margin-right: 1rem;
+  background-color: transparent;
+  border: none;
+}
+
+.category-chooser:focus {
+  outline: none;
 }

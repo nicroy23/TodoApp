@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const cors = require("cors");
 const modTodo = require('./database/new-todo');
+const categories = require('./database/category');
 
 //app.use(express.static("../public"));
 
@@ -56,6 +57,42 @@ app.delete("/delete-todo/:id", (req, res) => {
       res.json({ error: "Erreur du serveur." });
       console.log(err);
     });
+});
+
+app.get("/categories", (req, res) => {
+  categories.getAllCategories()
+    .then((categories) => {
+      res.json(categories);
+    })
+    .catch((err) => {
+      res.status(500);
+      res.json({ error: "Erreur du serveur." });
+      console.log(err);
+    });
+});
+
+app.post("/update-category-color/:id", (req, res) => {
+  categories.updateCategoryColor(req.params.id, req.body.color, req.body.title)
+    .then(() => {
+      res.json({ success: "Category updated." });
+    })
+    .catch((err) => {
+      res.status(500);
+      res.json({ error: "Erreur du serveur." });
+      console.log(err);
+    });
+});
+
+app.post("/update-category-title/:id", (req, res) => {
+  categories.updateCategoryTitle(req.params.id, req.body.title)
+  .then(() => {
+    res.json({ success: "Category updated." });
+  })
+  .catch((err) => {
+    res.status(500);
+    res.json({ error: "Erreur du serveur." });
+    console.log(err);
+  });
 });
 
 const port = 3000;

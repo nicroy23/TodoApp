@@ -8,6 +8,28 @@
   </head>
   <body>
     <h1 class="title">TodoApp</h1>
+    <div class="category-creator">
+      <div>
+        <input type="color" id="category1" onchange="updateCategColor(this.id, this.value)" value="#FFFFFF" />
+        <input type="text" class="category-input" onchange="updateCategoryTitle(this.id, this.value)" id="category1-txt" value="Create" />
+      </div>
+      <div>
+        <input type="color" id="category2" onchange="updateCategColor(this.id, this.value)" value="#FFFFFF" />
+        <input type="text" class="category-input" id="category2-txt" onchange="updateCategoryTitle(this.id, this.value)" value="Your" />
+      </div>
+      <div>
+        <input type="color" id="category3" onchange="updateCategColor(this.id, this.value)" value="#FFFFFF" />
+        <input type="text" class="category-input" id="category3-txt" onchange="updateCategoryTitle(this.id, this.value)" value="Own" />
+      </div>
+      <div>
+        <input type="color" id="category4" onchange="updateCategColor(this.id, this.value)" value="#FFFFFF" />
+        <input type="text" class="category-input" id="category4-txt" onchange="updateCategoryTitle(this.id, this.value)" value="Categories" />
+      </div>
+      <div>
+        <input type="color" id="category5" onchange="updateCategColor(this.id, this.value)" value="#FFFFFF" />
+        <input type="text" class="category-input" id="category5-txt" onchange="updateCategoryTitle(this.id, this.value)" value="!!!" />
+      </div>
+    </div>
     <div class="main-list-div">
       <ul class="main-list" id="todo-list"></ul>
       <input
