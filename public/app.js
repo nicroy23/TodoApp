@@ -12,24 +12,6 @@ window.onload = function () {
     const API_URL = 'http://localhost:3000/todos';
     const CATEGORIES_URL = 'http://localhost:3000/categories';
 
-    fetch(API_URL, {
-        method: "GET",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        }
-    })
-        .then(response => {
-            return response.json();
-        })
-        .then(responseJson => {
-            todos.push(responseJson);
-            displayTodos();
-        })
-        .catch(error => {
-            console.log(error);
-        });
-
     fetch(CATEGORIES_URL, {
         method: "GET",
         headers: {
@@ -43,6 +25,24 @@ window.onload = function () {
         .then(responseJson => {
             cat.push(responseJson);
             setCategories();
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+    fetch(API_URL, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        }
+    })
+        .then(response => {
+            return response.json();
+        })
+        .then(responseJson => {
+            todos.push(responseJson);
+            displayTodos();
         })
         .catch(error => {
             console.log(error);
@@ -63,7 +63,7 @@ todoInput.addEventListener("keydown", () => {
             body: JSON.stringify({ todo_str: todoInput.value, todo_client_id: clientId, todo_color: BASE_COLOR }),
         })
             .then(() => {
-                list.insertAdjacentHTML("beforeend", `<li class="list-item" id="${clientId}" style="background-color: ${BASE_COLOR}">${todoInput.value}<button class="delete-btn" id="B-${clientId}" onclick="deleteTask('${clientId}')">X</button><input type="color" onchange="changeColor(this.value, '${clientId}')" class="color-input"></li>`);
+                list.insertAdjacentHTML("beforeend", `<li class="list-item" id="${clientId}" style="background-color: ${BASE_COLOR}">${todoInput.value}<button class="delete-btn" id="B-${clientId}" onclick="deleteTask('${clientId}')">X</button><select class="category-chooser" onchange="changeCategory(this.value, '${clientId}')"><option value="Category">Category</option><option value="1">${cat[0][0].cat_str}</option><option value="2">${cat[0][1].cat_str}</option><option value="3">${cat[0][2].cat_str}</option><option value="4">${cat[0][3].cat_str}</option><option value="5">${cat[0][4].cat_str}</option></select></li>`);
 
                 todoInput.value = '';
             })
@@ -91,7 +91,7 @@ function deleteTask(id) {
 
 function displayTodos() {
     for (let i = 0; i < todos[0].length; i++) {
-        list.insertAdjacentHTML("beforeend", `<li class="list-item" id="${todos[0][i].todo_client_id}" style="background-color: ${todos[0][i].todo_color};">${todos[0][i].todo_str}<button class="delete-btn" id="B-${todos[0][i].todo_client_id}" onclick="deleteTask('${todos[0][i].todo_client_id}')">X</button><select class="category-chooser" onchange="changeCategory(this.value)"><option value="None">None</option><option value="Test">Test</option><option value="Test">Test</option><option value="Test">Test</option><option value="Test">Test</option></select><input type="color" onchange="changeColor(this.value, '${todos[0][i].todo_client_id}')" class="color-input"></li>`);
+        list.insertAdjacentHTML("beforeend", `<li class="list-item" id="${todos[0][i].todo_client_id}" style="background-color: ${todos[0][i].todo_color};">${todos[0][i].todo_str}<button class="delete-btn" id="B-${todos[0][i].todo_client_id}" onclick="deleteTask('${todos[0][i].todo_client_id}')">X</button><select class="category-chooser" onchange="changeCategory(this.value, '${todos[0][i].todo_client_id}')"><option value="Category">Category</option><option value="1">${cat[0][0].cat_str}</option><option value="2">${cat[0][1].cat_str}</option><option value="3">${cat[0][2].cat_str}</option><option value="4">${cat[0][3].cat_str}</option><option value="5">${cat[0][4].cat_str}</option></select></li>`);
         todoId++;
     }
 }
@@ -128,8 +128,14 @@ function changeColor(color, id) {
         });
 }
 
-function changeCategory(category) {
-    console.log(category);
+function changeCategory(catId, todoId) {
+    if (catId !== 'Category') {
+        let fullCatId = 'category' + catId;
+
+        changeColor(document.getElementById(fullCatId).value, todoId);
+    } else {
+        changeColor('#3792cb', todoId);
+    }
 }
 
 function setCategories() {
