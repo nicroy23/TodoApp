@@ -5,7 +5,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const modTodo = require('./database/new-todo');
 
-app.use(express.static("../public"));
+//app.use(express.static("../public"));
 
 app.use(bodyParser.json());
 app.use(
@@ -28,6 +28,18 @@ app.post("/todos", (req, res) => {
     .newTodo(req.body)
     .then(() => {
       res.json({ success: "Todo ajoute." });
+    })
+    .catch((err) => {
+      res.status(500);
+      res.json({ error: "Erreur du serveur." });
+      console.log(err);
+    });
+});
+
+app.post("/update-color/:id", (req, res) => {
+  modTodo.updateColor(req.body.todo_client_id, req.body.todo_color)
+    .then(() => {
+      res.json({ success: "Couleur modifiee." });
     })
     .catch((err) => {
       res.status(500);

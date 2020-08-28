@@ -56,16 +56,30 @@ ul {
 
 .delete-btn {
   float: right;
-  background-color: #3792cb;
+  background-color: transparent;
   border: none;
   border-radius: 50%;
 }
 
 .delete-btn:hover {
-  background-color: #5a9dc7;
+  background-color: rgba(255, 255, 255, 0.281);
   cursor: pointer;
 }
 
 .delete-btn:focus {
     outline: none;
+}
+
+.category-creator {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.color-input {
+  float: right;
+  margin-right: 1rem;
+  border: none;
 }
