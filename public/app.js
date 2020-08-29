@@ -91,7 +91,7 @@ function deleteTask(id) {
 
 function displayTodos() {
     for (let i = 0; i < todos[0].length; i++) {
-        list.insertAdjacentHTML("beforeend", `<li class="list-item" id="${todos[0][i].todo_client_id}" style="background-color: ${todos[0][i].todo_color};">${todos[0][i].todo_str}<button class="delete-btn" id="B-${todos[0][i].todo_client_id}" onclick="deleteTask('${todos[0][i].todo_client_id}')">X</button><select class="category-chooser" onchange="changeCategory(this.value, '${todos[0][i].todo_client_id}')"><option value="Category">Category</option><option value="1">${cat[0][0].cat_str}</option><option value="2">${cat[0][1].cat_str}</option><option value="3">${cat[0][2].cat_str}</option><option value="4">${cat[0][3].cat_str}</option><option value="5">${cat[0][4].cat_str}</option></select></li>`);
+        list.insertAdjacentHTML("beforeend", `<li class="list-item" id="${todos[0][i].todo_client_id}" style="background-color: ${todos[0][i].todo_color};">${todos[0][i].todo_str}<button class="delete-btn" id="B-${todos[0][i].todo_client_id}" onclick="deleteTask('${todos[0][i].todo_client_id}')">X</button><select class="category-chooser" onchange="changeCategory(this.value, '${todos[0][i].todo_client_id}')"><option value="Category" ${isSelected(todos[0][i].todo_color, '#3792cb')}>Category</option><option value="1" ${isSelected(todos[0][i].todo_color, cat[0][0].color)}>${cat[0][0].cat_str}</option><option value="2" ${isSelected(todos[0][i].todo_color, cat[0][1].color)}>${cat[0][1].cat_str}</option><option value="3" ${isSelected(todos[0][i].todo_color, cat[0][2].color)}>${cat[0][2].cat_str}</option><option value="4" ${isSelected(todos[0][i].todo_color, cat[0][3].color)}>${cat[0][3].cat_str}</option><option value="5" ${isSelected(todos[0][i].todo_color, cat[0][4].color)}>${cat[0][4].cat_str}</option></select></li>`);
         todoId++;
     }
 }
@@ -181,4 +181,14 @@ function updateCategoryTitle(id, title) {
         .catch(error => {
             console.log(error);
         });
+}
+
+function isSelected(todoColor, catColor) {
+    console.log(todoColor);
+    console.log(catColor);
+    if (todoColor === catColor) {
+        return 'selected';
+    } else {
+        return;
+    }
 }

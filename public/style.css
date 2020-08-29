@@ -109,3 +109,7 @@ ul {
 .category-chooser:focus {
   outline: none;
 }
+
+.category-chooser:hover {
+  cursor: pointer;
+}
